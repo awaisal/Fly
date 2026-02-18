@@ -1,24 +1,23 @@
-app = "almuslimsolutions"
-primary_region = "sin"
+# fly.toml app configuration file generated for fly-q1mvga on 2026-02-18T01:31:38Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'fly-q1mvga'
+primary_region = 'ams'
 
 [build]
-  dockerfile = "Dockerfile"
-
-[env]
-  PORT = "8080"
-  FLOOD_WINDOW_SEC = "8"
-  FLOOD_MAX_MSG = "6"
-  REPEAT_MAX = "3"
-  LINK_SPAM_ENABLED = "1"
-  DB_PATH = "/data/bot.db"
-
-[[mounts]]
-  source = "botdata"
-  destination = "/data"
 
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = "off"
+  auto_stop_machines = 'stop'
   auto_start_machines = true
-  min_machines_running = 1
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 512
