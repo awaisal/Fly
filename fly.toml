@@ -1,4 +1,4 @@
-app = "almuslimsolutions"
+app = "fly-q1mvga"
 primary_region = "sin"
 
 [build]
@@ -6,19 +6,15 @@ primary_region = "sin"
 
 [env]
   PORT = "8080"
-  FLOOD_WINDOW_SEC = "8"
-  FLOOD_MAX_MSG = "6"
-  REPEAT_MAX = "3"
-  LINK_SPAM_ENABLED = "1"
-  DB_PATH = "/data/bot.db"
-
-[[mounts]]
-  source = "botdata"
-  destination = "/data"
 
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = "off"
+  auto_stop_machines = false
   auto_start_machines = true
   min_machines_running = 1
+
+  [http_service.concurrency]
+    type = "requests"
+    soft_limit = 25
+    hard_limit = 50
